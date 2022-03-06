@@ -44,7 +44,7 @@ class CommandRunner {
 
             const response = await axiosInstance.get('/cgi-bin/commands');
 
-            handleFetchAllCommandsResponse(response.data);
+            this.handleFetchAllCommandsResponse(response.data);
         } catch (error) {
             console.error('fetch error:', error);
 
@@ -52,7 +52,7 @@ class CommandRunner {
             commandsDiv.innerHTML = `<pre>Try number ${fetchAllCommandsTryNumber} to fetch all commands failed.</pre>`;
 
             setTimeout(() => {
-                fetchAllCommands();
+                this.fetchAllCommands();
             }, 1000);
         }
     }
@@ -74,7 +74,7 @@ class CommandRunner {
             radioButton.addEventListener('change', function (e) {
                 if (this.checked) {
                     const selectedCommandID = radioButton.value;
-                    fetchInfoForCommandID(selectedCommandID);
+                    this.fetchInfoForCommandID(selectedCommandID);
                 }
             });
         }
@@ -83,7 +83,7 @@ class CommandRunner {
             for (const radioButton of radioButtons) {
                 if (radioButton.checked) {
                     const selectedCommandID = radioButton.value;
-                    fetchInfoForCommandID(selectedCommandID);
+                    this.fetchInfoForCommandID(selectedCommandID);
                     break;
                 }
             }
@@ -91,7 +91,7 @@ class CommandRunner {
     }
 
     start() {
-        fetchAllCommands();
+        this.fetchAllCommands();
     }
 
 }

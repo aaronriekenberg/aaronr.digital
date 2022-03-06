@@ -40,7 +40,7 @@ class CommandRunner {
 
     async fetchAllCommands() {
         try {
-            ++fetchAllCommandsTryNumber;
+            ++this.fetchAllCommandsTryNumber;
 
             const response = await axiosInstance.get('/cgi-bin/commands');
 
@@ -49,7 +49,7 @@ class CommandRunner {
             console.error('fetch error:', error);
 
             const commandsDiv = document.querySelector("#commands");
-            commandsDiv.innerHTML = `<pre>Try number ${fetchAllCommandsTryNumber} to fetch all commands failed.</pre>`;
+            commandsDiv.innerHTML = `<pre>Try number ${this.fetchAllCommandsTryNumber} to fetch all commands failed.</pre>`;
 
             setTimeout(() => {
                 this.fetchAllCommands();

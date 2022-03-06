@@ -68,6 +68,12 @@ class CommandRunner {
              </div>`)
             .join('\n');
 
+        this.addRadioButtonEventListeners();
+
+        this.startPeriodicCommandInfoFetch();
+    }
+
+    addRadioButtonEventListeners() {
         const radioButtons = document.querySelectorAll('input[name="command"]');
 
         for (const radioButton of radioButtons) {
@@ -79,6 +85,10 @@ class CommandRunner {
                 }
             });
         }
+    }
+
+    startPeriodicCommandInfoFetch() {
+        const radioButtons = document.querySelectorAll('input[name="command"]');
 
         setInterval(() => {
             for (const radioButton of radioButtons) {

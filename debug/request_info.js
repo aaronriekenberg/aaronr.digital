@@ -1,32 +1,41 @@
 "use strict";
 
-const axiosInstance = axios.create({
-    timeout: 1000,
-    headers: {
-        'axios-version': axios.VERSION
+class DisplayRequestInfo {
+
+    constructor() {
+        this.axiosInstance = axios.create({
+            timeout: 1000,
+            headers: {
+                'axios-version': axios.VERSION
+            }
+        });
     }
-});
 
-const fetchRequestInfo = async () => {
-    try {
-        const response = await axiosInstance.get('/cgi-bin/debug/request_info');
+    async fetchRequestInfo() {
+        try {
+            const response = await this.axiosInstance.get('/cgi-bin/debug/request_info');
 
-        handleResponse(response.data);
-    } catch (error) {
-        console.error('fetch error:', error);
+            this.handleResponse(response.data);
+        } catch (error) {
+            console.error('fetch error:', error);
 
+            const outputPre = document.querySelector("#output");
+
+            outputPre.innerText = 'error fetching request info';
+        }
+    }
+
+    handleResponse(response) {
         const outputPre = document.querySelector("#output");
 
-        outputPre.innerText = 'error fetching request info';
+        outputPre.innerText = response.requestInfo;
     }
-}
 
-const handleResponse = (response) => {
-    const outputPre = document.querySelector("#output");
-
-    outputPre.innerText = response.requestInfo;
+    start() {
+        this.fetchRequestInfo();
+    }
 }
 
 const onload = () => {
-    fetchRequestInfo();
+    new DisplayRequestInfo().start();
 }

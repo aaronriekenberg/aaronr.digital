@@ -16,7 +16,7 @@ class CommandRunner {
         try {
             const response = await this.axiosInstance.get(`/cgi-bin/commands/${commandID}`);
 
-            handleFetchInfoForCommandIDResponse(response.data);
+            this.handleFetchInfoForCommandIDResponse(response.data);
         } catch (error) {
             console.error('fetch error:', error);
         }

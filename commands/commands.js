@@ -14,7 +14,7 @@ class CommandRunner {
 
     async fetchInfoForCommandID(commandID) {
         try {
-            const response = await axiosInstance.get(`/cgi-bin/commands/${commandID}`);
+            const response = await this.axiosInstance.get(`/cgi-bin/commands/${commandID}`);
 
             handleFetchInfoForCommandIDResponse(response.data);
         } catch (error) {
@@ -42,7 +42,7 @@ class CommandRunner {
         try {
             ++this.fetchAllCommandsTryNumber;
 
-            const response = await axiosInstance.get('/cgi-bin/commands');
+            const response = await this.axiosInstance.get('/cgi-bin/commands');
 
             this.handleFetchAllCommandsResponse(response.data);
         } catch (error) {

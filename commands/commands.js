@@ -71,10 +71,11 @@ class CommandRunner {
         const radioButtons = document.querySelectorAll('input[name="command"]');
 
         for (const radioButton of radioButtons) {
+            const commandRunner = this;
             radioButton.addEventListener('change', function (e) {
                 if (this.checked) {
-                    const selectedCommandID = radioButton.value;
-                    this.fetchInfoForCommandID(selectedCommandID);
+                    const selectedCommandID = this.value;
+                    commandRunner.fetchInfoForCommandID(selectedCommandID);
                 }
             });
         }

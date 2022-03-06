@@ -9,10 +9,13 @@ class DisplayRequestInfo {
                 'axios-version': axios.VERSION
             }
         });
+        this.fetchTryNumber = 0;
     }
 
     async fetchRequestInfo() {
         try {
+            ++this.fetchTryNumber;
+
             const response = await this.axiosInstance.get('/cgi-bin/debug/request_info');
 
             this.handleResponse(response.data);
@@ -21,7 +24,11 @@ class DisplayRequestInfo {
 
             const outputPre = document.querySelector("#output");
 
-            outputPre.innerText = 'error fetching request info';
+            outputPre.innerText = `Try number ${this.fetchTryNumber} to fetch all commands failed.`;
+
+            setTimeout(() => {
+                this.fetchRequestInfo();
+            }, 1000);
         }
     }
 

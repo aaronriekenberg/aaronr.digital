@@ -10,25 +10,30 @@ class CommandRunner {
             }
         });
         this.fetchAllCommandsTryNumber = 0;
+        this.commandIDToCommandAndArgsString = new Map();
     }
 
     async fetchInfoForCommandID(commandID) {
         try {
             const response = await this.axiosInstance.get(`/cgi-bin/commands/${commandID}`);
 
-            this.handleFetchInfoForCommandIDResponse(response.data);
+            this.handleFetchInfoForCommandIDResponse(commandID, response.data);
         } catch (error) {
             console.error('fetch error:', error);
         }
     }
 
-    handleFetchInfoForCommandIDResponse(responseData) {
+    handleFetchInfoForCommandIDResponse(commandID, responseData) {
         const outputPre = document.querySelector('#output');
 
-        let commandAndArgsString = responseData.commandInfo.command;
-        for (const arg of (responseData.commandInfo.args || [])) {
-            commandAndArgsString += ` ${arg}`;
+        if (!this.commandIDToCommandAndArgsString.has(commandID)) {
+            let commandAndArgsString = responseData.commandInfo.command;
+            for (const arg of (responseData.commandInfo.args || [])) {
+                commandAndArgsString += ` ${arg}`;
+            }
+            this.commandIDToCommandAndArgsString.set(commandID, commandAndArgsString);
         }
+        const commandAndArgsString = this.commandIDToCommandAndArgsString.get(commandID);
 
         let preText = `Now: ${responseData.now}\n\n`;
         preText += `Command Duration: ${responseData.commandDuration}\n\n`;

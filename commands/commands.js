@@ -92,18 +92,28 @@ class CommandRunner {
         }
     }
 
-    startPeriodicCommandInfoFetch() {
+    async startPeriodicCommandInfoFetch() {
         const radioButtons = document.querySelectorAll('input[name="command"]');
 
-        setInterval(() => {
+        const sleepMS = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+        while (true) {
+            const nowMS = Date.now();
+            const msAfterCurrentSecond = (nowMS % 1000);
+            if (msAfterCurrentSecond === 0) {
+              await sleepMS(1000);
+            } else {
+              await sleepMS(1000 - msAfterCurrentSecond);
+            }
+
             for (const radioButton of radioButtons) {
                 if (radioButton.checked) {
                     const selectedCommandID = radioButton.value;
-                    this.fetchInfoForCommandID(selectedCommandID);
+                    await this.fetchInfoForCommandID(selectedCommandID);
                     break;
                 }
             }
-        }, 1000);
+        }
     }
 
     start() {

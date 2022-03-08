@@ -101,9 +101,9 @@ class CommandRunner {
             const nowMS = Date.now();
             const msAfterCurrentSecond = (nowMS % 1000);
             if (msAfterCurrentSecond === 0) {
-              await sleepMS(1000);
+                await sleepMS(1000);
             } else {
-              await sleepMS(1000 - msAfterCurrentSecond);
+                await sleepMS(1000 - msAfterCurrentSecond);
             }
 
             for (const radioButton of radioButtons) {

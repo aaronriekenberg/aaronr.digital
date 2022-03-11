@@ -49,22 +49,22 @@ class CommandRunner {
         let fetchAllCommandsTryNumber = 0;
 
         while (!done) {
-          try {
-            ++fetchAllCommandsTryNumber;
+            try {
+                ++fetchAllCommandsTryNumber;
 
-            const response = await this.axiosInstance.get('/cgi-bin/commands');
+                const response = await this.axiosInstance.get('/cgi-bin/commands');
 
-            this.handleFetchAllCommandsResponse(response.data);
+                this.handleFetchAllCommandsResponse(response.data);
 
-            done = true;
-        } catch (error) {
-            console.error('fetch error:', error);
+                done = true;
+            } catch (error) {
+                console.error('fetch error:', error);
 
-            const commandsDiv = document.querySelector("#commands");
-            commandsDiv.innerHTML = `<pre>Try number ${fetchAllCommandsTryNumber} to fetch all commands failed.</pre>`;
+                const commandsDiv = document.querySelector("#commands");
+                commandsDiv.innerHTML = `<pre>Try number ${fetchAllCommandsTryNumber} to fetch all commands failed.</pre>`;
 
-            await sleepMS(1000);
-        }
+                await sleepMS(1000);
+            }
         }
     }
 

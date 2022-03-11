@@ -18,7 +18,7 @@ class DisplayRequestInfo {
 
     async fetchRequestInfo() {
         let done = false;
-        let fetchAllCommandsTryNumber = 0;
+        let fetchTryNumber = 0;
 
         while (!done) {
             try {

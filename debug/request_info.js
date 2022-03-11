@@ -1,5 +1,8 @@
 "use strict";
 
+const stringify = JSON.stringify;
+const stringifyPretty = (object) => stringify(object, null, 2);
+
 class DisplayRequestInfo {
 
     constructor() {
@@ -35,7 +38,17 @@ class DisplayRequestInfo {
     handleResponse(response) {
         const outputPre = document.querySelector("#output");
 
-        outputPre.innerText = response.requestInfo;
+        let innerText = `Method: ${response.httpMethod}\n`;
+        innerText += `Protocol: ${response.httpProtocol}\n`;
+        innerText += `Host: ${response.host}\n`;
+        innerText += `Remote Address: ${response.remoteAddress}\n`;
+        innerText += `URL: ${response.url}\n`;
+        innerText += `Body Content Length: ${response.bodyContentLength}\n`;
+        innerText += `Close: ${response.close}\n`;
+        innerText += '\nRequest Headers:\n';
+        innerText += `${stringifyPretty(response.requestHeaders)}`;
+
+        outputPre.innerText = innerText;
     }
 
     start() {

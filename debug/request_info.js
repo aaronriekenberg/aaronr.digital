@@ -3,6 +3,8 @@
 const stringify = JSON.stringify;
 const stringifyPretty = (object) => stringify(object, null, 2);
 
+const sleepMS = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
 class DisplayRequestInfo {
 
     constructor() {
@@ -12,26 +14,30 @@ class DisplayRequestInfo {
                 'axios-version': axios.VERSION
             }
         });
-        this.fetchTryNumber = 0;
     }
 
     async fetchRequestInfo() {
-        try {
-            ++this.fetchTryNumber;
+        let done = false;
+        let fetchAllCommandsTryNumber = 0;
 
-            const response = await this.axiosInstance.get('/cgi-bin/debug/request_info');
+        while (!done) {
+            try {
+                ++fetchTryNumber;
 
-            this.handleResponse(response.data);
-        } catch (error) {
-            console.error('fetch error:', error);
+                const response = await this.axiosInstance.get('/cgi-bin/debug/request_info');
 
-            const outputPre = document.querySelector("#output");
+                this.handleResponse(response.data);
 
-            outputPre.innerText = `Try number ${this.fetchTryNumber} to fetch all commands failed.`;
+                done = true;
+            } catch (error) {
+                console.error('fetch error:', error);
 
-            setTimeout(() => {
-                this.fetchRequestInfo();
-            }, 1000);
+                const outputPre = document.querySelector("#output");
+
+                outputPre.innerText = `Try number ${fetchTryNumber} to fetch all commands failed.`;
+
+                await sleepMS(1000);
+            }
         }
     }
 

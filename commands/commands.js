@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const sleepMS = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -60,7 +60,7 @@ class CommandRunner {
             } catch (error) {
                 console.error('fetch error:', error);
 
-                const commandsDiv = document.querySelector("#commands");
+                const commandsDiv = document.querySelector('#commands');
                 commandsDiv.innerHTML = `<pre>Try number ${fetchAllCommandsTryNumber} to fetch all commands failed.</pre>`;
 
                 await sleepMS(1000);
@@ -70,7 +70,7 @@ class CommandRunner {
 
     handleFetchAllCommandsResponse(commands) {
         // generate the radio buttons
-        const commandsDiv = document.querySelector("#commands");
+        const commandsDiv = document.querySelector('#commands');
 
         commandsDiv.innerHTML = (commands || []).map((command) =>
             `<div>

@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const stringify = JSON.stringify;
 const stringifyPretty = (object) => stringify(object, null, 2);
@@ -32,7 +32,7 @@ class DisplayRequestInfo {
             } catch (error) {
                 console.error('fetch error:', error);
 
-                const outputPre = document.querySelector("#output");
+                const outputPre = document.querySelector('#output');
 
                 outputPre.innerText = `Try number ${fetchTryNumber} to fetch request info failed.`;
 
@@ -42,7 +42,7 @@ class DisplayRequestInfo {
     }
 
     handleResponse(response) {
-        const outputPre = document.querySelector("#output");
+        const outputPre = document.querySelector('#output');
 
         let innerText = `Method: ${response.httpMethod}\n`;
         innerText += `Protocol: ${response.httpProtocol}\n`;

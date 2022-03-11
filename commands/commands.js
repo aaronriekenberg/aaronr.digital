@@ -101,7 +101,6 @@ class CommandRunner {
     async startPeriodicCommandInfoFetch() {
         const radioButtons = document.querySelectorAll('input[name="command"]');
 
-
         while (true) {
             const nowMS = Date.now();
             const msAfterCurrentSecond = (nowMS % 1000);

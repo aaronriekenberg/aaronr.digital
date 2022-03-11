@@ -34,7 +34,7 @@ class DisplayRequestInfo {
 
                 const outputPre = document.querySelector("#output");
 
-                outputPre.innerText = `Try number ${fetchTryNumber} to fetch all commands failed.`;
+                outputPre.innerText = `Try number ${fetchTryNumber} to fetch request info failed.`;
 
                 await sleepMS(1000);
             }

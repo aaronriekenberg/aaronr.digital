@@ -1,5 +1,7 @@
 "use strict";
 
+const sleepMS = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
 class CommandRunner {
 
     constructor() {
@@ -9,7 +11,6 @@ class CommandRunner {
                 'axios-version': axios.VERSION
             }
         });
-        this.fetchAllCommandsTryNumber = 0;
         this.commandIDToCommandAndArgsString = new Map();
     }
 
@@ -44,21 +45,26 @@ class CommandRunner {
     }
 
     async fetchAllCommands() {
-        try {
-            ++this.fetchAllCommandsTryNumber;
+        let done = false;
+        let fetchAllCommandsTryNumber = 0;
+
+        while (!done) {
+          try {
+            ++fetchAllCommandsTryNumber;
 
             const response = await this.axiosInstance.get('/cgi-bin/commands');
 
             this.handleFetchAllCommandsResponse(response.data);
+
+            done = true;
         } catch (error) {
             console.error('fetch error:', error);
 
             const commandsDiv = document.querySelector("#commands");
-            commandsDiv.innerHTML = `<pre>Try number ${this.fetchAllCommandsTryNumber} to fetch all commands failed.</pre>`;
+            commandsDiv.innerHTML = `<pre>Try number ${fetchAllCommandsTryNumber} to fetch all commands failed.</pre>`;
 
-            setTimeout(() => {
-                this.fetchAllCommands();
-            }, 1000);
+            await sleepMS(1000);
+        }
         }
     }
 
@@ -95,7 +101,6 @@ class CommandRunner {
     async startPeriodicCommandInfoFetch() {
         const radioButtons = document.querySelectorAll('input[name="command"]');
 
-        const sleepMS = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
         while (true) {
             const nowMS = Date.now();

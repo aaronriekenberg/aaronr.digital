@@ -73,7 +73,7 @@ class CommandRunner {
         const commandsDiv = document.querySelector('#commands');
 
         commandsDiv.innerHTML = (commands || []).map((command) =>
-            `<div>
+            `<div class="radio-button">
                <input type="radio" name="command" value="${command.id}" id="${command.id}">
                <label for="${command.id}">${command.description}</label>
              </div>`)

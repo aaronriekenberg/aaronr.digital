@@ -19,12 +19,12 @@ a:hover {
 
 .radio-button label {
     color: #BAD7FF;
-    cursor: pointer;
 }
 
 .radio-button label:hover {
     text-decoration: underline;
     color: #1C1;
+    cursor: pointer;
 }
 
 .radio-button input[type="radio"]:checked+label {

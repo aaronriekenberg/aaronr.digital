@@ -29,7 +29,7 @@ class CommandRunner {
 
         if (!this.commandIDToCommandAndArgsString.has(commandID)) {
             let commandAndArgsString = responseData.commandInfo.command;
-            for (const arg of (responseData.commandInfo.args || [])) {
+            for (const arg of (responseData.commandInfo.args ?? [])) {
                 commandAndArgsString += ` ${arg}`;
             }
             this.commandIDToCommandAndArgsString.set(commandID, commandAndArgsString);
@@ -72,12 +72,16 @@ class CommandRunner {
         // generate the radio buttons
         const commandsDiv = document.querySelector('#commands');
 
-        commandsDiv.innerHTML = (commands || []).map((command) =>
-            `<div class="radio-button">
+        let innerHTML = '<ul>\n';
+        innerHTML += ((commands ?? []).map((command) =>
+            `<li class="radio-button">
                <input type="radio" name="command" value="${command.id}" id="${command.id}">
                <label for="${command.id}">${command.description}</label>
-             </div>`)
-            .join('\n');
+             </li>`)
+            .join('\n'));
+        innerHTML += '</ul>';
+
+        commandsDiv.innerHTML = innerHTML;
 
         this.addRadioButtonEventListeners();
 

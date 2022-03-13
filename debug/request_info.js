@@ -24,9 +24,13 @@ class DisplayRequestInfo {
             try {
                 ++fetchTryNumber;
 
+                const startTimeMS = Date.now();
+
                 const response = await this.axiosInstance.get('/cgi-bin/debug/request_info');
 
-                this.handleResponse(response.data);
+                const roundTripTimeMS = Date.now() - startTimeMS;
+
+                this.handleResponse(roundTripTimeMS, response.data);
 
                 done = true;
             } catch (error) {
@@ -41,18 +45,19 @@ class DisplayRequestInfo {
         }
     }
 
-    handleResponse(response) {
+    handleResponse(roundTripTimeMS, responseData) {
         const outputPre = document.querySelector('#output');
 
-        let innerText = `Method: ${response.httpMethod}\n`;
-        innerText += `Protocol: ${response.httpProtocol}\n`;
-        innerText += `Host: ${response.host}\n`;
-        innerText += `Remote Address: ${response.remoteAddress}\n`;
-        innerText += `URL: ${response.url}\n`;
-        innerText += `Body Content Length: ${response.bodyContentLength}\n`;
-        innerText += `Close: ${response.close}\n`;
+        let innerText = `Round Trip Time: ${roundTripTimeMS}ms\n`;
+        innerText += `Method: ${responseData.httpMethod}\n`;
+        innerText += `Protocol: ${responseData.httpProtocol}\n`;
+        innerText += `Host: ${responseData.host}\n`;
+        innerText += `Remote Address: ${responseData.remoteAddress}\n`;
+        innerText += `URL: ${responseData.url}\n`;
+        innerText += `Body Content Length: ${responseData.bodyContentLength}\n`;
+        innerText += `Close: ${responseData.close}\n`;
         innerText += '\nRequest Headers:\n';
-        innerText += `${stringifyPretty(response.requestHeaders)}`;
+        innerText += `${stringifyPretty(responseData.requestHeaders)}`;
 
         outputPre.innerText = innerText;
     }

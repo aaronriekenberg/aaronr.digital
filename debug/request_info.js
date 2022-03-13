@@ -49,13 +49,14 @@ class DisplayRequestInfo {
         const outputPre = document.querySelector('#output');
 
         let innerText = `Round Trip Time: ${roundTripTimeMS}ms\n`;
-        innerText += `Method: ${responseData.httpMethod}\n`;
-        innerText += `Protocol: ${responseData.httpProtocol}\n`;
-        innerText += `Host: ${responseData.host}\n`;
-        innerText += `Remote Address: ${responseData.remoteAddress}\n`;
-        innerText += `URL: ${responseData.url}\n`;
-        innerText += `Body Content Length: ${responseData.bodyContentLength}\n`;
-        innerText += `Close: ${responseData.close}\n`;
+        innerText += '\nRequest Fields:\n';
+        innerText += `  Method: ${responseData.httpMethod}\n`;
+        innerText += `  Protocol: ${responseData.httpProtocol}\n`;
+        innerText += `  Host: ${responseData.host}\n`;
+        innerText += `  Remote Address: ${responseData.remoteAddress}\n`;
+        innerText += `  URL: ${responseData.url}\n`;
+        innerText += `  Body Content Length: ${responseData.bodyContentLength}\n`;
+        innerText += `  Close: ${responseData.close}\n`;
         innerText += '\nRequest Headers:\n';
         innerText += `${stringifyPretty(responseData.requestHeaders)}`;
 

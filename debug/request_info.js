@@ -14,12 +14,18 @@ class DisplayRequestInfo {
                 'axios-version': axios.VERSION
             }
         });
+        this.fetchRunning = false;
     }
 
     async fetchRequestInfo() {
+        if (this.fetchRunning) {
+          return;
+        }
+
         let done = false;
         let fetchTryNumber = 0;
 
+        this.fetchRunning = true;
         while (!done) {
             try {
                 ++fetchTryNumber;
@@ -43,6 +49,7 @@ class DisplayRequestInfo {
                 await sleepMS(1000);
             }
         }
+        this.fetchRunning = false;
     }
 
     handleResponse(roundTripTimeMS, responseData) {
@@ -62,12 +69,6 @@ class DisplayRequestInfo {
 
         outputPre.innerText = innerText;
     }
-
-    start() {
-        this.fetchRequestInfo();
-    }
 }
 
-const onload = () => {
-    new DisplayRequestInfo().start();
-}
+const displayRequestInfo = new DisplayRequestInfo();

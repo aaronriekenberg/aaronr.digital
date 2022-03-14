@@ -19,7 +19,7 @@ class DisplayRequestInfo {
 
     async fetchRequestInfo() {
         if (this.fetchRunning) {
-          return;
+            return;
         }
 
         let done = false;

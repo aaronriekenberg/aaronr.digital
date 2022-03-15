@@ -36,7 +36,7 @@ class DisplayRequestInfo {
 
                 const roundTripTimeMS = Date.now() - startTimeMS;
 
-                this.handleResponse(roundTripTimeMS, response.data);
+                this.handleResponse(roundTripTimeMS, response.data, response.headers);
 
                 done = true;
             } catch (error) {
@@ -52,7 +52,7 @@ class DisplayRequestInfo {
         this.fetchRunning = false;
     }
 
-    handleResponse(roundTripTimeMS, responseData) {
+    handleResponse(roundTripTimeMS, responseData, responseHeaders) {
         const outputPre = document.querySelector('#output');
 
         let innerText = `Round Trip Time: ${roundTripTimeMS}ms\n`;
@@ -65,7 +65,9 @@ class DisplayRequestInfo {
         innerText += `  Body Content Length: ${responseData.bodyContentLength}\n`;
         innerText += `  Close: ${responseData.close}\n`;
         innerText += '\nRequest Headers:\n';
-        innerText += `${stringifyPretty(responseData.requestHeaders)}`;
+        innerText += `${stringifyPretty(responseData.requestHeaders)}\n`;
+        innerText += '\nResponse Headers:\n';
+        innerText += `${stringifyPretty(responseHeaders)}`;
 
         outputPre.innerText = innerText;
     }

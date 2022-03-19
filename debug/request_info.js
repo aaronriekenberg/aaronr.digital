@@ -70,7 +70,7 @@ class DisplayRequestInfo {
         innerText += `  Close: ${responseData.close}\n`;
         innerText += '\nRequest Headers:\n';
         innerText += `${stringifyPretty(responseData.requestHeaders)}\n`;
-        innerText += `\nResponseStatus: ${responseStatus}\n`;
+        innerText += `\nResponse Status: ${responseStatus}\n`;
         innerText += '\nResponse Headers:\n';
         innerText += `${stringifyPretty(responseHeaders)}`;
 

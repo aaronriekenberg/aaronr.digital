@@ -6,7 +6,7 @@ class CommandRunner {
 
     constructor() {
         this.axiosInstance = axios.create({
-            timeout: 1000,
+            timeout: 5000,
             headers: {
                 'axios-version': axios.VERSION
             }

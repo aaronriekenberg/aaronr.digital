@@ -69,9 +69,9 @@ class DisplayRequestInfo {
         innerText += `  Body Content Length: ${responseData.bodyContentLength}\n`;
         innerText += `  Close: ${responseData.close}\n`;
         innerText += '\nRequest Headers (Single Value):\n';
-        innerText += `${stringifyPretty(responseData.singleValueRequestHeaders)}\n`;
+        innerText += `${stringifyPretty(responseData.requestHeaders.singleValue)}\n`;
         innerText += '\nRequest Headers (Multi Value):\n';
-        innerText += `${stringifyPretty(responseData.multiValueRequestHeaders)}\n`;
+        innerText += `${stringifyPretty(responseData.requestHeaders.multiValue)}\n`;
         innerText += `\nResponse Status: ${responseStatus}\n`;
         innerText += '\nResponse Headers:\n';
         innerText += `${stringifyPretty(responseHeaders)}`;

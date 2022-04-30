@@ -131,6 +131,4 @@ class CommandRunner {
 
 }
 
-const onload = () => {
-    new CommandRunner().start();
-}
+const commandRunner = new CommandRunner();

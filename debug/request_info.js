@@ -7,32 +7,36 @@ const sleepMS = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 class DisplayRequestInfo {
 
+    #axiosInstance;
+
+    #fetchRunning;
+
     constructor() {
-        this.axiosInstance = axios.create({
+        this.#axiosInstance = axios.create({
             timeout: 5000,
             headers: {
                 'axios-version': axios.VERSION
             }
         });
-        this.fetchRunning = false;
+        this.#fetchRunning = false;
     }
 
     async fetchRequestInfo() {
-        if (this.fetchRunning) {
+        if (this.#fetchRunning) {
             return;
         }
 
         let done = false;
         let fetchTryNumber = 0;
 
-        this.fetchRunning = true;
+        this.#fetchRunning = true;
         while (!done) {
             try {
                 ++fetchTryNumber;
 
                 const startTimeMS = Date.now();
 
-                const response = await this.axiosInstance.get('/cgi-bin/debug/request_info');
+                const response = await this.#axiosInstance.get('/cgi-bin/debug/request_info');
 
                 const roundTripTimeMS = Date.now() - startTimeMS;
 
@@ -49,7 +53,7 @@ class DisplayRequestInfo {
                 await sleepMS(1000);
             }
         }
-        this.fetchRunning = false;
+        this.#fetchRunning = false;
     }
 
     handleResponse(roundTripTimeMS, response) {

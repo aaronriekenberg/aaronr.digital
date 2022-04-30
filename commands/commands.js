@@ -4,19 +4,23 @@ const sleepMS = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 class CommandRunner {
 
+    #axiosInstance;
+
+    #commandIDToCommandAndArgsString;
+
     constructor() {
-        this.axiosInstance = axios.create({
+        this.#axiosInstance = axios.create({
             timeout: 5000,
             headers: {
                 'axios-version': axios.VERSION
             }
         });
-        this.commandIDToCommandAndArgsString = new Map();
+        this.#commandIDToCommandAndArgsString = new Map();
     }
 
     async fetchInfoForCommandID(commandID) {
         try {
-            const response = await this.axiosInstance.get(`/cgi-bin/commands/${commandID}`);
+            const response = await this.#axiosInstance.get(`/cgi-bin/commands/${commandID}`);
 
             this.handleFetchInfoForCommandIDResponse(commandID, response.data);
         } catch (error) {
@@ -27,14 +31,14 @@ class CommandRunner {
     handleFetchInfoForCommandIDResponse(commandID, responseData) {
         const outputPre = document.querySelector('#output');
 
-        if (!this.commandIDToCommandAndArgsString.has(commandID)) {
+        if (!this.#commandIDToCommandAndArgsString.has(commandID)) {
             let commandAndArgsString = responseData.commandInfo.command;
             for (const arg of (responseData.commandInfo.args ?? [])) {
                 commandAndArgsString += ` ${arg}`;
             }
-            this.commandIDToCommandAndArgsString.set(commandID, commandAndArgsString);
+            this.#commandIDToCommandAndArgsString.set(commandID, commandAndArgsString);
         }
-        const commandAndArgsString = this.commandIDToCommandAndArgsString.get(commandID);
+        const commandAndArgsString = this.#commandIDToCommandAndArgsString.get(commandID);
 
         let preText = `Now: ${responseData.now}\n\n`;
         preText += `Command Duration: ${responseData.commandDuration}\n\n`;
@@ -52,7 +56,7 @@ class CommandRunner {
             try {
                 ++fetchAllCommandsTryNumber;
 
-                const response = await this.axiosInstance.get('/cgi-bin/commands');
+                const response = await this.#axiosInstance.get('/cgi-bin/commands');
 
                 this.handleFetchAllCommandsResponse(response.data);
 

@@ -1,16 +1,32 @@
+html {
+  --bg: #1E1F21;
+  --fg: #EEEFF1;
+  --link: #BAD7FF;
+  --activelink: #1C1;
+}
+
+@media (prefers-color-scheme: light) {
+  html {
+    --bg: #FFF7F7;
+    --fg: #1E1F21;
+    --link: #A72020;
+    --activelink: #FF0000;
+  }
+}
+
 body {
-  background-color: #1E1F21;
-  color: #EEEFF1;
+  background-color: var(--bg);
+  color: var(--fg);
 }
 
 a {
   text-decoration: none;
-  color: #BAD7FF;
+  color: var(--link);
 }
 
 a:hover {
   text-decoration: underline;
-  color: #1C1;
+  color: var(--activelink);
 }
 
 .radio-button input[type="radio"] {
@@ -18,24 +34,24 @@ a:hover {
 }
 
 .radio-button label {
-  color: #BAD7FF;
+  color: var(--link);
 }
 
 .radio-button label:hover {
   text-decoration: underline;
-  color: #1C1;
+  color: var(--activelink);
   cursor: pointer;
 }
 
 .radio-button input[type="radio"]:checked+label {
   text-decoration: none;
-  color: #1C1;
+  color: var(--activelink);
 }
 
 .button {
-  background-color: #1E1F21;
-  color: #BAD7FF;
-  border: 1px solid #BAD7FF;
+  background-color: var(--bg);
+  color: var(--link);
+  border: 1px solid var(--link);
   padding: 5px 10px;
   text-align: center;
   text-decoration: none;
@@ -44,49 +60,8 @@ a:hover {
 }
 
 .button:active {
-  background-color: #1C1;
-  color: #1E1F21;
-  border: 1px solid #1C1;
+  background-color: var(--activelink);
+  color: var(--bg);
+  border: 1px solid var(--activelink);
   transition: 0s;
-}
-
-/* redefine colors for light mode */
-
-@media (prefers-color-scheme: light) {
-  body {
-    background-color: #fff7f7;
-    color: #1E1F21;
-  }
-
-  a {
-    color: #a72020;
-  }
-
-  a:hover {
-    color: #FF0000;
-  }
-
-  .radio-button label {
-    color: #a72020;
-  }
-
-  .radio-button label:hover {
-    color: #FF0000;
-  }
-
-  .radio-button input[type="radio"]:checked+label {
-    color: #FF0000;
-  }
-
-  .button {
-    background-color: #fff7f7;
-    color: #a72020;
-    border: 1px solid #a72020;
-  }
-
-  .button:active {
-    background-color: #FF0000;
-    color: #fff7f7;
-    border: 1px solid #FF0000;
-  }
 }

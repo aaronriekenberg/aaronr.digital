@@ -1,35 +1,35 @@
 body {
-    background-color: #1E1F21;
-    color: #EEEFF1;
+  background-color: #1E1F21;
+  color: #EEEFF1;
 }
 
 a {
-    text-decoration: none;
-    color: #BAD7FF;
+  text-decoration: none;
+  color: #BAD7FF;
 }
 
 a:hover {
-    text-decoration: underline;
-    color: #1C1;
+  text-decoration: underline;
+  color: #1C1;
 }
 
 .radio-button input[type="radio"] {
-    display: none;
+  display: none;
 }
 
 .radio-button label {
-    color: #BAD7FF;
+  color: #BAD7FF;
 }
 
 .radio-button label:hover {
-    text-decoration: underline;
-    color: #1C1;
-    cursor: pointer;
+  text-decoration: underline;
+  color: #1C1;
+  cursor: pointer;
 }
 
 .radio-button input[type="radio"]:checked+label {
-    text-decoration: none;
-    color: #1C1;
+  text-decoration: none;
+  color: #1C1;
 }
 
 .button {
@@ -48,4 +48,45 @@ a:hover {
   color: #1E1F21;
   border: 1px solid #1C1;
   transition: 0s;
+}
+
+/* redefine colors for light mode */
+
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: #fff7f7;
+    color: #1E1F21;
+  }
+
+  a {
+    color: #a72020;
+  }
+
+  a:hover {
+    color: #FF0000;
+  }
+
+  .radio-button label {
+    color: #a72020;
+  }
+
+  .radio-button label:hover {
+    color: #FF0000;
+  }
+
+  .radio-button input[type="radio"]:checked+label {
+    color: #FF0000;
+  }
+
+  .button {
+    background-color: #fff7f7;
+    color: #a72020;
+    border: 1px solid #a72020;
+  }
+
+  .button:active {
+    background-color: #FF0000;
+    color: #fff7f7;
+    border: 1px solid #FF0000;
+  }
 }

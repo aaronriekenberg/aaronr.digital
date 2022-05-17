@@ -11,4 +11,4 @@ cp -r * $DEST
 cp -r .git* $DEST
 
 cd $DEST
-./brotli-static.sh
+./scripts/brotli-static.sh

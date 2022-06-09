@@ -8,6 +8,8 @@ class CommandRunner {
 
     #commandIDToCommandAndArgsString;
 
+    #fetchInfoForCommandIDRunning;
+
     constructor() {
         this.#axiosInstance = axios.create({
             timeout: 5000,
@@ -16,9 +18,15 @@ class CommandRunner {
             }
         });
         this.#commandIDToCommandAndArgsString = new Map();
+        this.#fetchInfoForCommandIDRunning = false;
     }
 
     async fetchInfoForCommandID(commandID) {
+        if (this.#fetchInfoForCommandIDRunning) {
+            return;
+        }
+
+        this.#fetchInfoForCommandIDRunning = true;
         try {
             const response = await this.#axiosInstance.get(`/cgi-bin/commands/${commandID}`);
 
@@ -26,6 +34,7 @@ class CommandRunner {
         } catch (error) {
             console.error('fetch error:', error);
         }
+        this.#fetchInfoForCommandIDRunning = false;
     }
 
     handleFetchInfoForCommandIDResponse(commandID, responseData) {

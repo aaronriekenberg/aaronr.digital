@@ -12,13 +12,8 @@ class CommandRunner {
 
     #pendingFetchInfoCommandID;
 
-    constructor() {
-        this.#axiosInstance = axios.create({
-            timeout: 5000,
-            headers: {
-                'axios-version': axios.VERSION
-            }
-        });
+    constructor(axiosInstance) {
+        this.#axiosInstance = axiosInstance;
         this.#commandIDToCommandAndArgsString = new Map();
         this.#fetchInfoForCommandIDRunning = false;
         this.#pendingFetchInfoCommandID = null;
@@ -67,6 +62,30 @@ class CommandRunner {
         preText += responseData.commandOutput;
 
         outputPre.innerText = preText;
+    }
+
+}
+
+class CommandController {
+
+    #axiosInstance;
+
+    #commandRunner;
+
+    constructor() {
+        this.#axiosInstance = axios.create({
+            timeout: 5000,
+            headers: {
+                'axios-version': axios.VERSION
+            }
+        });
+        this.#commandRunner = new CommandRunner(
+            this.#axiosInstance
+        );
+    }
+
+    async fetchInfoForCommandID(commandID) {
+        await this.#commandRunner.fetchInfoForCommandID(commandID);
     }
 
     async fetchAllCommands() {

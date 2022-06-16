@@ -171,4 +171,4 @@ class CommandController {
 
 }
 
-const commandRunner = new CommandRunner();
+const commandController = new CommandController();

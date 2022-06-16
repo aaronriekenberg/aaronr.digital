@@ -10,6 +10,8 @@ class CommandRunner {
 
     #fetchInfoForCommandIDRunning;
 
+    #pendingFetchInfoCommandID;
+
     constructor() {
         this.#axiosInstance = axios.create({
             timeout: 5000,

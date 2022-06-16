@@ -19,21 +19,31 @@ class CommandRunner {
         });
         this.#commandIDToCommandAndArgsString = new Map();
         this.#fetchInfoForCommandIDRunning = false;
+        this.#pendingFetchInfoCommandID = null;
     }
 
     async fetchInfoForCommandID(commandID) {
+        this.#pendingFetchInfoCommandID = commandID;
+
         if (this.#fetchInfoForCommandIDRunning) {
             return;
         }
 
         this.#fetchInfoForCommandIDRunning = true;
-        try {
-            const response = await this.#axiosInstance.get(`/cgi-bin/commands/${commandID}`);
 
-            this.handleFetchInfoForCommandIDResponse(commandID, response.data);
-        } catch (error) {
-            console.error('fetch error:', error);
+        while (this.#pendingFetchInfoCommandID !== null) {
+            try {
+                const commandIDToFetch = this.#pendingFetchInfoCommandID;
+                this.#pendingFetchInfoCommandID = null;
+
+                const response = await this.#axiosInstance.get(`/cgi-bin/commands/${commandIDToFetch}`);
+
+                this.handleFetchInfoForCommandIDResponse(commandIDToFetch, response.data);
+            } catch (error) {
+                console.error('fetch error:', error);
+            }
         }
+
         this.#fetchInfoForCommandIDRunning = false;
     }
 

@@ -5,7 +5,7 @@ const stringifyPretty = (object) => stringify(object, null, 2);
 
 const sleepMS = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-class DisplayRequestInfo {
+class RequestInfoController {
 
     #axiosInstance;
 
@@ -84,4 +84,4 @@ class DisplayRequestInfo {
     }
 }
 
-const displayRequestInfo = new DisplayRequestInfo();
+const requestInfoController = new RequestInfoController();

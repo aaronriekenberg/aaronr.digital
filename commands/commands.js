@@ -35,7 +35,7 @@ class CommandRunner {
 
                 const response = await this.#axiosInstance.get(`/cgi-bin/commands/${commandIDToFetch}`);
 
-                this.handleFetchInfoForCommandIDResponse(commandIDToFetch, response.data);
+                this.#handleFetchInfoForCommandIDResponse(commandIDToFetch, response.data);
             } catch (error) {
                 console.error('fetch error:', error);
             }
@@ -44,7 +44,7 @@ class CommandRunner {
         this.#fetchInfoForCommandIDRunning = false;
     }
 
-    handleFetchInfoForCommandIDResponse(commandID, responseData) {
+    #handleFetchInfoForCommandIDResponse(commandID, responseData) {
         const outputPre = document.querySelector('#output');
 
         if (!this.#commandIDToCommandAndArgsString.has(commandID)) {
@@ -84,11 +84,11 @@ class CommandController {
         );
     }
 
-    async fetchInfoForCommandID(commandID) {
+    async #fetchInfoForCommandID(commandID) {
         await this.#commandRunner.fetchInfoForCommandID(commandID);
     }
 
-    async fetchAllCommands() {
+    async #fetchAllCommands() {
         let done = false;
         let fetchAllCommandsTryNumber = 0;
 
@@ -98,7 +98,7 @@ class CommandController {
 
                 const response = await this.#axiosInstance.get('/cgi-bin/commands');
 
-                this.handleFetchAllCommandsResponse(response.data);
+                this.#handleFetchAllCommandsResponse(response.data);
 
                 done = true;
             } catch (error) {
@@ -112,7 +112,7 @@ class CommandController {
         }
     }
 
-    handleFetchAllCommandsResponse(commands) {
+    #handleFetchAllCommandsResponse(commands) {
         // generate the radio buttons
         const commandsDiv = document.querySelector('#commands');
 
@@ -127,12 +127,12 @@ class CommandController {
 
         commandsDiv.innerHTML = innerHTML;
 
-        this.addRadioButtonEventListeners();
+        this.#addRadioButtonEventListeners();
 
-        this.startPeriodicCommandInfoFetch();
+        this.#startPeriodicCommandInfoFetch();
     }
 
-    addRadioButtonEventListeners() {
+    #addRadioButtonEventListeners() {
         const radioButtons = document.querySelectorAll('input[name="command"]');
 
         for (const radioButton of radioButtons) {
@@ -140,13 +140,13 @@ class CommandController {
             radioButton.addEventListener('change', function (e) {
                 if (this.checked) {
                     const selectedCommandID = this.value;
-                    commandRunner.fetchInfoForCommandID(selectedCommandID);
+                    commandRunner.#fetchInfoForCommandID(selectedCommandID);
                 }
             });
         }
     }
 
-    async startPeriodicCommandInfoFetch() {
+    async #startPeriodicCommandInfoFetch() {
         const radioButtons = document.querySelectorAll('input[name="command"]');
 
         while (true) {
@@ -158,7 +158,7 @@ class CommandController {
             for (const radioButton of radioButtons) {
                 if (radioButton.checked) {
                     const selectedCommandID = radioButton.value;
-                    await this.fetchInfoForCommandID(selectedCommandID);
+                    await this.#fetchInfoForCommandID(selectedCommandID);
                     break;
                 }
             }
@@ -166,7 +166,7 @@ class CommandController {
     }
 
     start() {
-        this.fetchAllCommands();
+        this.#fetchAllCommands();
     }
 
 }

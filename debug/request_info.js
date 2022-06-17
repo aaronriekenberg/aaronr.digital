@@ -40,7 +40,7 @@ class RequestInfoController {
 
                 const roundTripTimeMS = Date.now() - startTimeMS;
 
-                this.handleResponse(roundTripTimeMS, response);
+                this.#handleResponse(roundTripTimeMS, response);
 
                 done = true;
             } catch (error) {
@@ -56,7 +56,7 @@ class RequestInfoController {
         this.#fetchRunning = false;
     }
 
-    handleResponse(roundTripTimeMS, response) {
+    #handleResponse(roundTripTimeMS, response) {
         const responseData = response.data;
         const responseHeaders = response.headers;
         const responseStatus = response.status;

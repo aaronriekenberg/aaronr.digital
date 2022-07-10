@@ -74,8 +74,13 @@ class RequestInfoController {
         innerText += `  Close: ${responseData.close}\n`;
         innerText += '\nRequest Headers (Single Value):\n';
         innerText += `${stringifyPretty(responseData.requestHeaders.singleValue)}\n`;
-        innerText += '\nRequest Headers (Multi Value):\n';
-        innerText += `${stringifyPretty(responseData.requestHeaders.multiValue)}\n`;
+
+        const multiValueHeaders = responseData.requestHeaders.multiValueHeaders ?? [];
+        if (multiValueHeaders.length > 0) {
+            innerText += '\nRequest Headers (Multi Value):\n';
+            innerText += `${stringifyPretty(responseData.requestHeaders.multiValue)}\n`;
+        }
+
         innerText += `\nResponse Status: ${responseStatus}\n`;
         innerText += '\nResponse Headers:\n';
         innerText += `${stringifyPretty(responseHeaders)}`;

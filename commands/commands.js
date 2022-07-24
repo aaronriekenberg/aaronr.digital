@@ -116,14 +116,14 @@ class CommandController {
         // generate the radio buttons
         const commandsDiv = document.querySelector('#commands');
 
-        let innerHTML = '<hr>\n<ul>\n';
+        let innerHTML = '<ul>\n';
         innerHTML += ((commands ?? []).map((command) =>
             `<li class="radio-button">
                <input type="radio" name="command" value="${command.id}" id="${command.id}">
                <label for="${command.id}">${command.description}</label>
              </li>`)
             .join('\n'));
-        innerHTML += '</ul>';
+        innerHTML += '</ul>\n<hr>\n';
 
         commandsDiv.innerHTML = innerHTML;
 

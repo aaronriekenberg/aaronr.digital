@@ -7,7 +7,7 @@ html {
 
 @media (prefers-color-scheme: light) {
   html {
-    --bg: #FFFFFF;
+    --bg: #F7F7F7;
     --fg: #000000;
     --link: #24629D;
     --activelink: #FF8C00;

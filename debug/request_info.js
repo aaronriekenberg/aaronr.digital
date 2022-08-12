@@ -65,21 +65,13 @@ class RequestInfoController {
 
         let innerText = `Round Trip Time: ${roundTripTimeMS}ms\n`;
         innerText += '\nRequest Fields:\n';
-        innerText += `  Method: ${responseData.httpMethod}\n`;
-        innerText += `  Protocol: ${responseData.httpProtocol}\n`;
-        innerText += `  Host: ${responseData.host}\n`;
-        innerText += `  Remote Address: ${responseData.remoteAddress}\n`;
-        innerText += `  URL: ${responseData.url}\n`;
-        innerText += `  Body Content Length: ${responseData.bodyContentLength}\n`;
-        innerText += `  Close: ${responseData.close}\n`;
-        innerText += '\nRequest Headers (Single Value):\n';
-        innerText += `${stringifyPretty(responseData.requestHeaders.singleValue)}\n`;
+        innerText += `  Role: ${responseData.role}\n`;
+        innerText += `  Request ID: ${responseData.request_id}\n`;
+        innerText += '\nRequest HTTP Headers:\n';
+        innerText += `${stringifyPretty(responseData.http_headers)}\n`;
+        innerText += '\nRequest FastCGI Params:\n';
+        innerText += `${stringifyPretty(responseData.other_params)}\n`;
 
-        const multiValueHeaders = responseData.requestHeaders.multiValueHeaders ?? [];
-        if (multiValueHeaders.length > 0) {
-            innerText += '\nRequest Headers (Multi Value):\n';
-            innerText += `${stringifyPretty(responseData.requestHeaders.multiValue)}\n`;
-        }
 
         innerText += `\nResponse Status: ${responseStatus}\n`;
         innerText += '\nResponse Headers:\n';

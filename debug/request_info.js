@@ -68,6 +68,7 @@ class RequestInfoController {
         innerText += `  Role: ${responseData.role}\n`;
         innerText += `  Connection ID: ${responseData.connection_id}\n`;
         innerText += `  Request ID: ${responseData.request_id}\n`;
+        innerText += `  Request URI: ${responseData.request_uri}\n`;
         innerText += '\nRequest HTTP Headers:\n';
         innerText += `${stringifyPretty(responseData.http_headers)}\n`;
         innerText += '\nRequest FastCGI Params:\n';

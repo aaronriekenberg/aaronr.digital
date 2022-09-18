@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>jemalloc stats</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <script src="/axios.min.js"></script>
+    <script src="jemalloc_stats.js"></script>
+</head>
+
+<body onload="jemallocStatsController.fetchRequestInfo()">
+    <h2>jemalloc stats</h2>
+    <hr>
+    <button class="button" onclick="jemallocStatsController.fetchRequestInfo()">Refresh</button>
+    <pre id="output"></pre>
+</body>
+
+</html>

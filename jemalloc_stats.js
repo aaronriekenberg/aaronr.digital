@@ -5,7 +5,7 @@ const stringifyPretty = (object) => stringify(object, null, 2);
 
 const sleepMS = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-class RequestInfoController {
+class JemallocStatsController {
 
     #axiosInstance;
 
@@ -21,7 +21,7 @@ class RequestInfoController {
         this.#fetchRunning = false;
     }
 
-    async fetchRequestInfo() {
+    async fetchInfo() {
         if (this.#fetchRunning) {
             return;
         }
@@ -36,7 +36,7 @@ class RequestInfoController {
 
                 const startTimeMS = Date.now();
 
-                const response = await this.#axiosInstance.get('/cgi-bin/debug/request_info');
+                const response = await this.#axiosInstance.get('/cgi-bin/jemalloc_stats');
 
                 const roundTripTimeMS = Date.now() - startTimeMS;
 
@@ -48,7 +48,7 @@ class RequestInfoController {
 
                 const outputPre = document.querySelector('#output');
 
-                outputPre.innerText = `Try number ${fetchTryNumber} to fetch request info failed.`;
+                outputPre.innerText = `Try number ${fetchTryNumber} to fetch info failed.`;
 
                 await sleepMS(1000);
             }
@@ -58,28 +58,14 @@ class RequestInfoController {
 
     #handleResponse(roundTripTimeMS, response) {
         const responseData = response.data;
-        const responseHeaders = response.headers;
-        const responseStatus = response.status;
 
         const outputPre = document.querySelector('#output');
 
-        let innerText = `Round Trip Time: ${roundTripTimeMS}ms\n`;
-        innerText += '\nRequest Fields:\n';
-        innerText += `  Role: ${responseData.role}\n`;
-        innerText += `  Request ID: ${responseData.request_id}\n`;
-        innerText += `  Request URI: ${responseData.request_uri}\n`;
-        innerText += '\nRequest HTTP Headers:\n';
-        innerText += `${stringifyPretty(responseData.http_headers)}\n`;
-        innerText += '\nRequest FastCGI Params:\n';
-        innerText += `${stringifyPretty(responseData.other_params)}\n`;
-
-
-        innerText += `\nResponse Status: ${responseStatus}\n`;
-        innerText += '\nResponse Headers:\n';
-        innerText += `${stringifyPretty(responseHeaders)}`;
+        let innerText = 'jemalloc stats:\n';
+        innerText += `${stringifyPretty(responseData)}`;
 
         outputPre.innerText = innerText;
     }
 }
 
-const requestInfoController = new RequestInfoController();
+const jemallocStatsController = new JemallocStatsController();

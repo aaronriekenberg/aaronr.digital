@@ -9,10 +9,10 @@
     <script src="jemalloc_stats.js"></script>
 </head>
 
-<body onload="jemallocStatsController.fetchRequestInfo()">
+<body onload="controller.fetchInfo()">
     <h2>jemalloc stats</h2>
     <hr>
-    <button class="button" onclick="jemallocStatsController.fetchRequestInfo()">Refresh</button>
+    <button class="button" onclick="controller.fetchInfo()">Refresh</button>
     <pre id="output"></pre>
 </body>
 

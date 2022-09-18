@@ -82,4 +82,4 @@ class RequestInfoController {
     }
 }
 
-const requestInfoController = new RequestInfoController();
+const controller = new RequestInfoController();

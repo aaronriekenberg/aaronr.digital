@@ -68,4 +68,4 @@ class JemallocStatsController {
     }
 }
 
-const jemallocStatsController = new JemallocStatsController();
+const controller = new JemallocStatsController();

@@ -57,7 +57,7 @@ class CommandRunner {
         const commandAndArgsString = this.#commandIDToCommandAndArgsString.get(commandID);
 
         let preText = `Now: ${responseData.now}\n\n`;
-        preText += `Command Duration: ${responseData.commandDuration}\n\n`;
+        preText += `Command Duration: ${responseData.commandDurationMilliseconds}ms\n\n`;
         preText += `$ ${commandAndArgsString}\n\n`;
         preText += responseData.commandOutput;
 

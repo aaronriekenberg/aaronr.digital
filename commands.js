@@ -48,8 +48,8 @@ class CommandRunner {
         const outputPre = document.querySelector('#output');
 
         if (!this.#commandIDToCommandAndArgsString.has(commandID)) {
-            let commandAndArgsString = responseData.command_info.command;
-            for (const arg of (responseData.command_info.args ?? [])) {
+            let commandAndArgsString = responseData.commandInfo.command;
+            for (const arg of (responseData.commandInfo.args ?? [])) {
                 commandAndArgsString += ` ${arg}`;
             }
             this.#commandIDToCommandAndArgsString.set(commandID, commandAndArgsString);
@@ -57,9 +57,9 @@ class CommandRunner {
         const commandAndArgsString = this.#commandIDToCommandAndArgsString.get(commandID);
 
         let preText = `Now: ${responseData.now}\n\n`;
-        preText += `Command Duration: ${responseData.command_duration_ms}ms\n\n`;
+        preText += `Command Duration: ${responseData.commandDuration}\n\n`;
         preText += `$ ${commandAndArgsString}\n\n`;
-        preText += responseData.command_output;
+        preText += responseData.commandOutput;
 
         outputPre.innerText = preText;
     }

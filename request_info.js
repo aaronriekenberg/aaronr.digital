@@ -65,16 +65,11 @@ class RequestInfoController {
 
         let innerText = `Round Trip Time: ${roundTripTimeMS}ms\n`;
         innerText += '\nRequest Fields:\n';
-        innerText += `  FastCGI Role: ${responseData.fastcgi_role}\n`;
-        innerText += '  FastCGI Connection ID:\n';
-        innerText += `    ID: ${responseData.fastcgi_connection_id.id}\n`;
-        innerText += `    Server Type: ${responseData.fastcgi_connection_id.server_type}\n`;
-        innerText += `  FastCGI Request ID: ${responseData.fastcgi_request_id}\n`;
+        innerText += `  Method: ${responseData.method}\n`;
+        innerText += `  Version: ${responseData.version}\n`;
         innerText += `  Request URI: ${responseData.request_uri}\n`;
         innerText += '\nRequest HTTP Headers:\n';
         innerText += `${stringifyPretty(responseData.http_headers)}\n`;
-        innerText += '\nRequest FastCGI Params:\n';
-        innerText += `${stringifyPretty(responseData.other_params)}\n`;
 
         innerText += `\nResponse Status: ${responseStatus}\n`;
         innerText += '\nResponse Headers:\n';

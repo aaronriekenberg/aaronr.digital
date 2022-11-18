@@ -65,8 +65,6 @@ class RequestInfoController {
 
         let innerText = `Round Trip Time: ${roundTripTimeMS}ms\n`;
         innerText += '\nRequest Fields:\n';
-        innerText += `  Connection ID: ${responseData.connection_id}\n`;
-        innerText += `  Request ID: ${responseData.request_id}\n`;
         innerText += `  Method: ${responseData.method}\n`;
         innerText += `  Version: ${responseData.version}\n`;
         innerText += `  Request URI: ${responseData.request_uri}\n`;

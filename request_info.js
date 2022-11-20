@@ -69,7 +69,7 @@ class RequestInfoController {
         innerText += `  Request ID: ${responseData.request_id}\n`;
         innerText += `  Method: ${responseData.method}\n`;
         innerText += `  Version: ${responseData.version}\n`;
-        innerText += `  Request URI: ${responseData.request_uri}\n`;
+        innerText += `  Request URI Path: ${responseData.request_uri_path}\n`;
         innerText += '\nRequest HTTP Headers:\n';
         innerText += `${stringifyPretty(responseData.http_headers)}\n`;
 

@@ -1,7 +1,7 @@
 #!/bin/sh -x
 
-find . -name \*.br | xargs rm -f
+find . -name \*.br -print0 | xargs -0 rm -f
 
 #find . -name \*.html -o -name \*.js -o -name \*.map -o -name \*.css -o -name \*.ico -o -name \*.txt | xargs brotli -k
 
-find . -name \*.html -o -name \*.js -o -name \*.map -o -name \*.css -o -name \*.ico -o -name \*.txt | awk '{printf "brotli -k %s\n", $1}' | rust-parallel
+find . \( -name \*.html -o -name \*.js -o -name \*.map -o -name \*.css -o -name \*.ico -o -name \*.txt \) -print0 | rust-parallel -0 brotli -k

@@ -36,7 +36,7 @@ class RequestInfoController {
 
                 const startTimeMS = Date.now();
 
-                const response = await this.#axiosInstance.get('/cgi-bin/request_info');
+                const response = await this.#axiosInstance.get('/cgi-bin/debug/request_info');
 
                 const roundTripTimeMS = Date.now() - startTimeMS;
 
@@ -70,7 +70,6 @@ class RequestInfoController {
         innerText += `  Host: ${responseData.host}\n`;
         innerText += `  Remote Address: ${responseData.remoteAddress}\n`;
         innerText += `  URL: ${responseData.url}\n`;
-        innerText += `  Body Content Length: ${responseData.bodyContentLength}\n`;
         innerText += `  Close: ${responseData.close}\n`;
         innerText += '\nRequest Headers (Single Value):\n';
         innerText += `${stringifyPretty(responseData.requestHeaders.singleValue)}\n`;

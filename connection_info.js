@@ -61,9 +61,9 @@ class ConnectionInfoController {
 
         let innerText = `${connections.length} Connection(s):\n\n`;
 
-        innerText += ((connections ?? []).map((connection) =>
+        innerText += connections.map((connection) =>
             stringifyPretty(connection))
-            .join('\n'));
+            .join('\n');
 
         outputPre.innerText = innerText;
     }

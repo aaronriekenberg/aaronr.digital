@@ -55,15 +55,14 @@ class ConnectionInfoController {
     }
 
     #handleResponse(response) {
-        const connections = (response.data.connections ?? []);
+        const connections = response.data.connections;
+        const numConnections = Object.keys(connections).length;
 
         const outputPre = document.querySelector('#output');
 
-        let innerText = `${connections.length} Connection(s):\n\n`;
+        let innerText = `${Object.keys(connections).length} Connection(s):\n\n`;
 
-        innerText += connections.map((connection) =>
-            stringifyPretty(connection))
-            .join('\n');
+        innerText += stringifyPretty(connections);
 
         outputPre.innerText = innerText;
     }

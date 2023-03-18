@@ -74,8 +74,11 @@ class RequestInfoController {
         innerText += `${stringifyPretty(responseData.http_headers)}\n`;
 
         innerText += `\nResponse Status: ${responseStatus}\n`;
+
         innerText += '\nResponse Headers:\n';
-        innerText += `${stringifyPretty(responseHeaders)}`;
+        innerText += `${stringifyPretty(responseHeaders)}\n`;
+
+        innerText += `\nApp Version: ${responseData.app_version}\n`;
 
         outputPre.innerText = innerText;
     }

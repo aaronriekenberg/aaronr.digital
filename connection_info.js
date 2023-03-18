@@ -55,14 +55,9 @@ class ConnectionInfoController {
     }
 
     #handleResponse(response) {
-        const connections = response.data.connections;
-        const numConnections = Object.keys(connections).length;
-
         const outputPre = document.querySelector('#output');
 
-        let innerText = `${Object.keys(connections).length} Connection(s):\n\n`;
-
-        innerText += stringifyPretty(connections);
+        const innerText = `${stringifyPretty(response.data)}`;
 
         outputPre.innerText = innerText;
     }

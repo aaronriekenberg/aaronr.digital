@@ -64,14 +64,12 @@ class RequestInfoController {
         const outputPre = document.querySelector('#output');
 
         let innerText = `Round Trip Time: ${roundTripTimeMS}ms\n`;
+
         innerText += '\nRequest Fields:\n';
-        innerText += `  Connection ID: ${responseData.connection_id}\n`;
-        innerText += `  Request ID: ${responseData.request_id}\n`;
-        innerText += `  Method: ${responseData.method}\n`;
-        innerText += `  Version: ${responseData.version}\n`;
-        innerText += `  Request URI Path: ${responseData.request_uri_path}\n`;
-        innerText += '\nRequest HTTP Headers:\n';
-        innerText += `${stringifyPretty(responseData.http_headers)}\n`;
+        innerText += `${stringifyPretty(responseData.request_fields)}\n`;
+
+        innerText += '\nRequest Headers:\n';
+        innerText += `${stringifyPretty(responseData.request_headers)}\n`;
 
         innerText += `\nResponse Status: ${responseStatus}\n`;
 

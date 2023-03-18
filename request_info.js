@@ -76,8 +76,6 @@ class RequestInfoController {
         innerText += '\nResponse Headers:\n';
         innerText += `${stringifyPretty(responseHeaders)}\n`;
 
-        innerText += `\nBackend Version: ${responseData.app_version}\n`;
-
         outputPre.innerText = innerText;
     }
 }

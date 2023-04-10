@@ -36,7 +36,7 @@ class ConnectionInfoController {
 
                 const startTimeMS = Date.now();
 
-                const response = await this.#axiosInstance.get('/cgi-bin/connection_info');
+                const response = await this.#axiosInstance.get('/cgi-bin/server_info');
 
                 this.#handleResponse(response);
 

@@ -34,8 +34,6 @@ class GenericInfoController {
             try {
                 ++fetchTryNumber;
 
-                const startTimeMS = Date.now();
-
                 const response = await this.#axiosInstance.get(urlPath);
 
                 this.#handleResponse(response);

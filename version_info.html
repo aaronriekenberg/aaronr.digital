@@ -2,17 +2,17 @@
 <html>
 
 <head>
-  <title>server info</title>
+  <title>version info</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="/style.css">
   <script src="/axios.min.js"></script>
-  <script src="server_info.js"></script>
+  <script src="generic_info.js"></script>
 </head>
 
-<body onload="controller.fetchInfo()">
-  <h2>server info</h2>
+<body onload="controller.fetchInfo('/cgi-bin/version_info')">
+  <h2>version info</h2>
   <hr>
-  <button class="button" onclick="controller.fetchInfo()">Refresh</button>
+  <button class="button" onclick="controller.fetchInfo('/cgi-bin/version_info')">Refresh</button>
   <pre id="output"></pre>
 </body>
 

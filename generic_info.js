@@ -5,7 +5,7 @@ const stringifyPretty = (object) => stringify(object, null, 2);
 
 const sleepMS = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-class ConnectionInfoController {
+class GenericInfoController {
 
     #axiosInstance;
 
@@ -21,7 +21,7 @@ class ConnectionInfoController {
         this.#fetchRunning = false;
     }
 
-    async fetchInfo() {
+    async fetchInfo(urlPath) {
         if (this.#fetchRunning) {
             return;
         }
@@ -36,7 +36,7 @@ class ConnectionInfoController {
 
                 const startTimeMS = Date.now();
 
-                const response = await this.#axiosInstance.get('/cgi-bin/server_info');
+                const response = await this.#axiosInstance.get(urlPath);
 
                 this.#handleResponse(response);
 
@@ -63,4 +63,4 @@ class ConnectionInfoController {
     }
 }
 
-const controller = new ConnectionInfoController();
+const controller = new GenericInfoController();

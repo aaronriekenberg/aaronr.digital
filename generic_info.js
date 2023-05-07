@@ -45,6 +45,7 @@ class GenericInfoController {
                 const outputPre = document.querySelector('#output');
 
                 outputPre.innerText = `Try number ${fetchTryNumber} to fetch info failed.`;
+                outputPre.removeAttribute("hidden");
 
                 await sleepMS(1000);
             }
@@ -58,6 +59,7 @@ class GenericInfoController {
         const innerText = `${stringifyPretty(response.data)}`;
 
         outputPre.innerText = innerText;
+        outputPre.removeAttribute("hidden");
     }
 }
 

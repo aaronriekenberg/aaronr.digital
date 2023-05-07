@@ -49,6 +49,7 @@ class RequestInfoController {
                 const outputPre = document.querySelector('#output');
 
                 outputPre.innerText = `Try number ${fetchTryNumber} to fetch info failed.`;
+                outputPre.removeAttribute("hidden");
 
                 await sleepMS(1000);
             }
@@ -77,6 +78,7 @@ class RequestInfoController {
         innerText += `${stringifyPretty(responseHeaders)}\n`;
 
         outputPre.innerText = innerText;
+        outputPre.removeAttribute("hidden");
     }
 }
 

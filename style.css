@@ -53,7 +53,7 @@ a:hover {
   color: var(--activelink);
 }
 
-.button {
+.refresh-button {
   background-color: var(--bg);
   color: var(--link);
   border: 1px solid var(--link);
@@ -64,7 +64,7 @@ a:hover {
   transition-delay: 0.1s;
 }
 
-.button:active {
+.refresh-button:active {
   background-color: var(--activelink);
   color: var(--bg);
   border: 1px solid var(--activelink);

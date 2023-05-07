@@ -62,6 +62,7 @@ class CommandRunner {
         preText += responseData.command_output;
 
         outputPre.innerText = preText;
+        outputPre.removeAttribute("hidden");
     }
 
 }

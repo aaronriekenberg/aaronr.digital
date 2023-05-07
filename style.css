@@ -1,5 +1,6 @@
 html {
   --bg: #1E1F21;
+  --output-bg: #000000;
   --fg: #EEEFF1;
   --link: #BAD7FF;
   --activelink: #11CC11;
@@ -8,6 +9,7 @@ html {
 @media (prefers-color-scheme: light) {
   html {
     --bg: #f4f4f4;
+    --output-bg: #ffffff;
     --fg: #000000;
     --link: #24629D;
     --activelink: #04A12B;
@@ -69,6 +71,13 @@ a:hover {
   color: var(--bg);
   border: 1px solid var(--activelink);
   transition: 0s;
+}
+
+.output {
+  background-color: var(--output-bg);
+  border: 1px solid var(--fg);
+  padding: 5px 5px 5px 5px;
+  overflow: auto;
 }
 
 table.center {

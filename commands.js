@@ -12,11 +12,18 @@ class CommandRunner {
 
     #pendingFetchInfoCommandID;
 
+    #resetOutputScroll;
+
     constructor(axiosInstance) {
         this.#axiosInstance = axiosInstance;
         this.#commandIDToCommandAndArgsString = new Map();
         this.#fetchInfoForCommandIDRunning = false;
         this.#pendingFetchInfoCommandID = null;
+        this.#resetOutputScroll = false;
+    }
+  
+    enableResetOutputScroll() {
+      this.#resetOutputScroll = true;
     }
 
     async fetchInfoForCommandID(commandID) {
@@ -60,6 +67,11 @@ class CommandRunner {
         preText += `Command Duration: ${responseData.command_duration_ms}ms\n\n`;
         preText += `$ ${commandAndArgsString}\n\n`;
         preText += responseData.command_output;
+
+        if (this.#resetOutputScroll) {
+          outputPre.scrollLeft = 0;
+          this.#resetOutputScroll = false;
+        }
 
         outputPre.innerText = preText;
         outputPre.removeAttribute("hidden");
@@ -137,11 +149,12 @@ class CommandController {
         const radioButtons = document.querySelectorAll('input[name="command"]');
 
         for (const radioButton of radioButtons) {
-            const commandRunner = this;
+            const commandController = this;
             radioButton.addEventListener('change', function (e) {
                 if (this.checked) {
                     const selectedCommandID = this.value;
-                    commandRunner.#fetchInfoForCommandID(selectedCommandID);
+                    commandController.#commandRunner.enableResetOutputScroll();
+                    commandController.fetchInfoForCommandID(selectedCommandID);
                 }
             });
         }

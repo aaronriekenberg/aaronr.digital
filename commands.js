@@ -12,20 +12,16 @@ class CommandRunner {
 
     #pendingFetchInfoCommandID;
 
-    #resetOutputScroll;
+    #previouslyFetchedCommandID;
 
     constructor(axiosInstance) {
         this.#axiosInstance = axiosInstance;
         this.#commandIDToCommandAndArgsString = new Map();
         this.#fetchInfoForCommandIDRunning = false;
         this.#pendingFetchInfoCommandID = null;
-        this.#resetOutputScroll = false;
+        this.#previouslyFetchedCommandID = null;
     }
   
-    enableResetOutputScroll() {
-      this.#resetOutputScroll = true;
-    }
-
     async fetchInfoForCommandID(commandID) {
         this.#pendingFetchInfoCommandID = commandID;
 
@@ -42,7 +38,10 @@ class CommandRunner {
 
                 const response = await this.#axiosInstance.get(`/cgi-bin/commands/${commandIDToFetch}`);
 
-                this.#handleFetchInfoForCommandIDResponse(commandIDToFetch, response.data);
+                const resetOutputScroll = (this.#previouslyFetchedCommandID !== commandIDToFetch);
+                this.#previouslyFetchedCommandID = commandIDToFetch;
+
+                this.#handleFetchInfoForCommandIDResponse(commandIDToFetch, response.data, resetOutputScroll);
             } catch (error) {
                 console.error('fetch error:', error);
             }
@@ -51,7 +50,7 @@ class CommandRunner {
         this.#fetchInfoForCommandIDRunning = false;
     }
 
-    #handleFetchInfoForCommandIDResponse(commandID, responseData) {
+    #handleFetchInfoForCommandIDResponse(commandID, responseData, resetOutputScroll) {
         const outputPre = document.querySelector('#output');
 
         if (!this.#commandIDToCommandAndArgsString.has(commandID)) {
@@ -68,9 +67,8 @@ class CommandRunner {
         preText += `$ ${commandAndArgsString}\n\n`;
         preText += responseData.command_output;
 
-        if (this.#resetOutputScroll) {
+        if (resetOutputScroll) {
           outputPre.scrollLeft = 0;
-          this.#resetOutputScroll = false;
         }
 
         outputPre.innerText = preText;
@@ -153,8 +151,7 @@ class CommandController {
             radioButton.addEventListener('change', function (e) {
                 if (this.checked) {
                     const selectedCommandID = this.value;
-                    commandController.#commandRunner.enableResetOutputScroll();
-                    commandController.fetchInfoForCommandID(selectedCommandID);
+                    commandController.#fetchInfoForCommandID(selectedCommandID);
                 }
             });
         }

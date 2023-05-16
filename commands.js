@@ -21,7 +21,7 @@ class CommandRunner {
         this.#pendingFetchInfoCommandID = null;
         this.#previouslyFetchedCommandID = null;
     }
-  
+
     async fetchInfoForCommandID(commandID) {
         this.#pendingFetchInfoCommandID = commandID;
 
@@ -68,7 +68,7 @@ class CommandRunner {
         preText += responseData.command_output;
 
         if (resetOutputScroll) {
-          outputPre.scrollLeft = 0;
+            outputPre.scrollLeft = 0;
         }
 
         outputPre.innerText = preText;

@@ -46,7 +46,7 @@ class GenericInfoController {
 
                 outputPre.scrollLeft = 0;
                 outputPre.innerText = `Try number ${fetchTryNumber} to fetch info failed.`;
-                outputPre.removeAttribute("hidden");
+                outputPre.removeAttribute('hidden');
 
                 await sleepMS(1000);
             }

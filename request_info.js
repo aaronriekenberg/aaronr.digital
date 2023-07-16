@@ -50,7 +50,7 @@ class RequestInfoController {
 
                 outputPre.scrollLeft = 0;
                 outputPre.innerText = `Try number ${fetchTryNumber} to fetch info failed.`;
-                outputPre.removeAttribute("hidden");
+                outputPre.removeAttribute('hidden');
 
                 await sleepMS(1000);
             }
@@ -80,7 +80,7 @@ class RequestInfoController {
 
         outputPre.scrollLeft = 0;
         outputPre.innerText = innerText;
-        outputPre.removeAttribute("hidden");
+        outputPre.removeAttribute('hidden');
     }
 }
 

@@ -72,7 +72,7 @@ class CommandRunner {
         }
 
         outputPre.innerText = preText;
-        outputPre.removeAttribute("hidden");
+        outputPre.removeAttribute('hidden');
     }
 
 }

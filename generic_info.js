@@ -61,7 +61,7 @@ class GenericInfoController {
 
         outputPre.scrollLeft = 0;
         outputPre.innerText = innerText;
-        outputPre.removeAttribute("hidden");
+        outputPre.removeAttribute('hidden');
     }
 }
 

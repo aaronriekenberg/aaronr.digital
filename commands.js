@@ -36,7 +36,7 @@ class CommandRunner {
                 const commandIDToFetch = this.#pendingFetchInfoCommandID;
                 this.#pendingFetchInfoCommandID = null;
 
-                const response = await this.#axiosInstance.get(`/cgi-bin/commands/${commandIDToFetch}`);
+                const response = await this.#axiosInstance.get(`/api/v1/commands/${commandIDToFetch}`);
 
                 const resetOutputScroll = (this.#previouslyFetchedCommandID !== commandIDToFetch);
                 this.#previouslyFetchedCommandID = commandIDToFetch;
@@ -107,7 +107,7 @@ class CommandController {
             try {
                 ++fetchAllCommandsTryNumber;
 
-                const response = await this.#axiosInstance.get('/cgi-bin/commands');
+                const response = await this.#axiosInstance.get('/api/v1/commands');
 
                 this.#handleFetchAllCommandsResponse(response.data);
 

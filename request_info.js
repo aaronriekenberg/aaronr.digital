@@ -36,7 +36,7 @@ class RequestInfoController {
 
                 const startTimeMS = Date.now();
 
-                const response = await this.#axiosInstance.get('/cgi-bin/request_info');
+                const response = await this.#axiosInstance.get('/api/v1/request_info');
 
                 const roundTripTimeMS = Date.now() - startTimeMS;
 

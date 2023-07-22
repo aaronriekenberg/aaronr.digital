@@ -9,10 +9,10 @@
   <script src="generic_info.js"></script>
 </head>
 
-<body onload="controller.fetchInfo('/cgi-bin/version_info')">
+<body onload="controller.fetchInfo('/api/v1/version_info')">
   <h2>version info</h2>
   <hr>
-  <button class="refresh-button" onclick="controller.fetchInfo('/cgi-bin/version_info')">Refresh</button>
+  <button class="refresh-button" onclick="controller.fetchInfo('/api/v1/version_info')">Refresh</button>
   <pre class="output" id="output" hidden></pre>
 </body>
 

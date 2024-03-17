@@ -22,7 +22,7 @@ class CommandRunner {
         this.#previouslyFetchedCommandID = null;
     }
 
-    async fetchInfoForCommandID(commandID) {
+    async fetchInfoForCommandID(commandID, apiURL) {
         this.#pendingFetchInfoCommandID = commandID;
 
         if (this.#fetchInfoForCommandIDRunning) {
@@ -36,7 +36,7 @@ class CommandRunner {
                 const commandIDToFetch = this.#pendingFetchInfoCommandID;
                 this.#pendingFetchInfoCommandID = null;
 
-                const response = await this.#axiosInstance.get(`/api/v1/commands/${commandIDToFetch}`);
+                const response = await this.#axiosInstance.get(`${apiURL}/${commandIDToFetch}`);
 
                 const resetOutputScroll = (this.#previouslyFetchedCommandID !== commandIDToFetch);
                 this.#previouslyFetchedCommandID = commandIDToFetch;
@@ -83,6 +83,8 @@ class CommandController {
 
     #commandRunner;
 
+    #apiURL;
+
     constructor() {
         this.#axiosInstance = axios.create({
             timeout: 5000,
@@ -96,7 +98,7 @@ class CommandController {
     }
 
     async #fetchInfoForCommandID(commandID) {
-        await this.#commandRunner.fetchInfoForCommandID(commandID);
+        await this.#commandRunner.fetchInfoForCommandID(commandID, this.#apiURL);
     }
 
     async #fetchAllCommands() {
@@ -107,7 +109,7 @@ class CommandController {
             try {
                 ++fetchAllCommandsTryNumber;
 
-                const response = await this.#axiosInstance.get('/api/v1/commands');
+                const response = await this.#axiosInstance.get(this.#apiURL);
 
                 this.#handleFetchAllCommandsResponse(response.data);
 
@@ -151,7 +153,7 @@ class CommandController {
             radioButton.addEventListener('change', function (e) {
                 if (this.checked) {
                     const selectedCommandID = this.value;
-                    commandController.#fetchInfoForCommandID(selectedCommandID);
+                    commandController.#fetchInfoForCommandID(selectedCommandID, this.#apiURL);
                 }
             });
         }
@@ -176,7 +178,8 @@ class CommandController {
         }
     }
 
-    start() {
+    start(apiURL) {
+        this.#apiURL = apiURL;
         this.#fetchAllCommands();
     }
 

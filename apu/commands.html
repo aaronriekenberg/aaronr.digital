@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>commands</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="/style.css">
+  <script src="/js/axios.min.js"></script>
+  <script src="/js/commands.js"></script>
+</head>
+
+<body onload="commandController.start('/apu_api/v1/commands')">
+  <h2>commands</h2>
+  <hr>
+  <div id="commands"></div>
+  <pre class="output" id="output" hidden></pre>
+
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>connection info</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="/style.css">
+  <script src="/js/axios.min.js"></script>
+  <script src="/js/generic_info.js"></script>
+</head>
+
+<body onload="controller.fetchInfo('/rpi_api/v1/connection_info')">
+  <h2>connection info</h2>
+  <hr>
+  <button class="refresh-button" onclick="controller.fetchInfo('/rpi_api/v1/connection_info')">Refresh</button>
+  <pre class="output" id="output" hidden></pre>
+</body>
+
+</html>

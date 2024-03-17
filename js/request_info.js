@@ -21,7 +21,7 @@ class RequestInfoController {
         this.#fetchRunning = false;
     }
 
-    async fetchInfo() {
+    async fetchInfo(apiURL) {
         if (this.#fetchRunning) {
             return;
         }
@@ -36,7 +36,7 @@ class RequestInfoController {
 
                 const startTimeMS = Date.now();
 
-                const response = await this.#axiosInstance.get('/api/v1/request_info');
+                const response = await this.#axiosInstance.get(apiURL);
 
                 const roundTripTimeMS = Date.now() - startTimeMS;
 

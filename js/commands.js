@@ -153,7 +153,7 @@ class CommandController {
             radioButton.addEventListener('change', function (e) {
                 if (this.checked) {
                     const selectedCommandID = this.value;
-                    commandController.#fetchInfoForCommandID(selectedCommandID, this.#apiURL);
+                    commandController.#fetchInfoForCommandID(selectedCommandID, commandController.#apiURL);
                 }
             });
         }

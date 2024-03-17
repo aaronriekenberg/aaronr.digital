@@ -1,5 +1,5 @@
 goaccess.html
-vnstat/*.png
+apu/vnstat/*.png
 *.br
 *.gz
 *.wasm

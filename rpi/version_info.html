@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>version info</title>
+  <title>rpi version info</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="/style.css">
   <script src="/js/axios.min.js"></script>
@@ -10,7 +10,7 @@
 </head>
 
 <body onload="controller.fetchInfo('/rpi_api/v1/version_info')">
-  <h2>version info</h2>
+  <h2>rpi version info</h2>
   <hr>
   <button class="refresh-button" onclick="controller.fetchInfo('/rpi_api/v1/version_info')">Refresh</button>
   <pre class="output" id="output" hidden></pre>

@@ -2,17 +2,17 @@
 <html>
 
 <head>
-  <title>connection info</title>
+  <title>jvm info</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="/style.css">
   <script src="/js/axios.min.js"></script>
   <script src="/js/generic_info.js"></script>
 </head>
 
-<body onload="controller.fetchInfo('/api/v1/connection_info')">
-  <h2>connection info</h2>
+<body onload="controller.fetchInfo('/api/v1/jvm_info')">
+  <h2>jvm info</h2>
   <hr>
-  <button class="refresh-button" onclick="controller.fetchInfo('/api/v1/connection_info')">Refresh</button>
+  <button class="refresh-button" onclick="controller.fetchInfo('/api/v1/jvm_info')">Refresh</button>
   <pre class="output" id="output" hidden></pre>
 </body>
 

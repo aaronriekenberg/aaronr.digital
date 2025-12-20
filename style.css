@@ -79,13 +79,23 @@ a:hover {
   transition: 0s;
 }
 
-/* Use IBM Plex Mono for .output code blocks */
+/* Use IBM Plex Mono for .output code blocks — smaller and tighter */
 .output {
   background-color: var(--output-bg);
   border: 1px solid var(--fg);
-  padding: 5px 5px 5px 5px;
+  padding: 4px; /* slightly reduced */
   overflow: auto;
   font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace;
+  font-size: 0.9rem; /* reduced from default to make block smaller */
+  line-height: 1.35; /* tighter line-height for compactness */
+  border-radius: 4px;
+}
+
+/* Optional responsive tweak: a touch smaller on narrow screens */
+@media (max-width: 480px) {
+  .output {
+    font-size: 0.85rem;
+  }
 }
 
 table.center {

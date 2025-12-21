@@ -43,7 +43,6 @@ a:hover {
 
 .radio-button label {
   color: var(--link);
-  font-size: 1.1em;
 }
 
 .radio-button label:hover {
@@ -64,7 +63,7 @@ a:hover {
   padding: 5px 10px;
   text-align: center;
   text-decoration: none;
-  font-size: 1.1em;
+  font-size: 1.05em;
   transition-delay: 0.1s;
 }
 

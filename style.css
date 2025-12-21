@@ -19,6 +19,7 @@ html {
 body {
   background-color: var(--bg);
   color: var(--fg);
+  font-family: sans-serif;
 }
 
 img {
@@ -42,6 +43,7 @@ a:hover {
 
 .radio-button label {
   color: var(--link);
+  font-size: 1.1em;
 }
 
 .radio-button label:hover {
@@ -62,7 +64,8 @@ a:hover {
   padding: 5px 10px;
   text-align: center;
   text-decoration: none;
-  font-family: monospace;
+  font-size: 1.1em;
+  font-weight: bold;
   transition-delay: 0.1s;
 }
 
@@ -74,6 +77,7 @@ a:hover {
 }
 
 .output {
+  font-size: 1.1em;
   background-color: var(--output-bg);
   border: 1px solid var(--fg);
   padding: 5px 5px 5px 5px;

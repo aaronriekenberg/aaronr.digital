@@ -20,7 +20,7 @@ body {
   background-color: var(--bg);
   color: var(--fg);
   font-family: sans-serif;
-  font-size: 1.1em;
+  font-size: 1.05em;
 }
 
 img {
@@ -65,6 +65,7 @@ a:hover {
   text-align: center;
   text-decoration: none;
   transition-delay: 0.1s;
+  font-family: monospace;
   font-size: 1.05em;
 }
 
